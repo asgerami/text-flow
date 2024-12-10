@@ -1,7 +1,6 @@
 import { Editor } from "./editor";
 import { Toolbar } from "./toolbar";
 
-
 interface DocumentIdPageProps {
   params: Promise<{ documentId: string }>; //NextJS 15
 }
@@ -9,11 +8,12 @@ interface DocumentIdPageProps {
 const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
   const { documentId } = await params;
 
-  return(
-  <div className="min-h-screen bg-[#FAFBFD]">
-    <Toolbar />
-    <Editor />
-    </div>);
+  return (
+    <div className="min-h-screen bg-[#FAFBFD]">
+      <Toolbar />
+      <Editor />
+    </div>
+  );
 };
 
 export default DocumentIdPage;
