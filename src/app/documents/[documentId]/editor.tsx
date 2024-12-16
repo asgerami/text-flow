@@ -56,7 +56,9 @@ export const Editor = () => {
       Link.configure({
         openOnClick: false,
         autolink: true,
-        defaultProtocol: "https"
+        defaultProtocol: "https",
+        protocols: ['http', 'https'],
+        
       }),
       Color,
       Highlight.configure({
