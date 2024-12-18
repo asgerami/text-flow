@@ -49,6 +49,8 @@ import {
   Undo2Icon,
   UploadIcon,
 } from "lucide-react";
+import { Label } from "recharts";
+import { Value } from "@radix-ui/react-select";
 
 const ListButton = () => {
   const { editor } = useEditorStore();
@@ -374,6 +376,10 @@ const FontFamilyButton = () => {
     { label: "Georgia", value: "Georgia" },
     { label: "Verdana", value: "Verdana" },
     { label: "Calibri", value: "Calibri" },
+    { label: "Monospace", value: "Monospace" },
+    { label: "Cursive", value: "Cursive" },
+    { label: "Inter", value: "Inter" },
+
   ];
 
   return (
