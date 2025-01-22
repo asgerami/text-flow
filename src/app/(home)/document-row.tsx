@@ -3,14 +3,19 @@ import { SiGoogledocs } from "react-icons/si";
 import { Doc } from "../../../convex/_generated/dataModel";
 import { Building2Icon, CircleUserIcon, MoreVertical } from "lucide-react";
 import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
+import { DocumentMenu } from "./document-menu";
 
 interface DocumentRowProps {
   document: Doc<"documents">;
 }
 
 export const DocumentRow = ({ document }: DocumentRowProps) => {
+  const onNewTabClick = (id: string) => {
+    window.open(`/document/${id}`, "_blank");
+  }
+
   return (
+
     <TableRow className="cursorpointer">
       <TableCell className="w-[50px]">
         <SiGoogledocs className="size-6 fill-blue-500" />
@@ -27,12 +32,14 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
           {document.organizationId ? "Organization" : "Personal"}
         </TableCell>
         <TableCell className="text-muted-foreground hidden md:table-cell">
-          {format(new Date(document._creationTime), "MM dd, yyyy")}
+          {format(new Date(document._creationTime), "MMM dd, yyyy")}
         </TableCell>
         <TableCell>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <MoreVertical className="size-4" />
-        </Button>
+        <DocumentMenu 
+        documentId={document._id}
+        title={document.title}
+        onNewTab={onNewTabClick}
+        />
       </TableCell>        
     </TableRow>
   );
