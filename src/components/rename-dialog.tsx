@@ -38,12 +38,11 @@ export const RenameDialog = ({
     e.preventDefault();
     setIsUpdating(true);
 
-    update({ id: documentId, title: title.trim() || "Untitled" }).finally(
-      () => {
+    update({ id: documentId, title: title.trim() || "Untitled" })
+      .then(() => setOpen(false))
+      .finally(() => {
         setIsUpdating(false);
-        setOpen(false);
-      }
-    );
+      });
   };
 
   return (
@@ -58,32 +57,32 @@ export const RenameDialog = ({
             </DialogDescription>
           </DialogHeader>
           <div className="my-4">
-            <Input 
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Document name"
-            onClick={(e) => e.stopPropagation()}
+            <Input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Document name"
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
           <DialogFooter>
             <Button
-            type="button"
-            variant="ghost"
-            disabled={isUpdating}
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(false);
-            }}
+              type="button"
+              variant="ghost"
+              disabled={isUpdating}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(false);
+              }}
             >
               Cancel
-              </Button>
+            </Button>
             <Button
-             type="submit"
-             disabled={isUpdating}
-             onClick={(e) => e.stopPropagation()}
+              type="submit"
+              disabled={isUpdating}
+              onClick={(e) => e.stopPropagation()}
             >
               Save
-              </Button>
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
