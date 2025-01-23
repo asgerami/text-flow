@@ -9,7 +9,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
-import Link from '@tiptap/extension-link';
+import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import ImageResize from "tiptap-extension-resize-image";
 import Underline from "@tiptap/extension-underline";
@@ -60,18 +60,17 @@ export const Editor = () => {
       StarterKit,
       lineHeightExtension.configure({
         types: ["heading", "paragraph"],
-        defaultLineHeight: "normal"
+        defaultLineHeight: "normal",
       }),
       FontSizeExtension,
       TextAlign.configure({
-        types: ["heading", "paragraph"]
+        types: ["heading", "paragraph"],
       }),
       Link.configure({
         openOnClick: false,
         autolink: true,
         defaultProtocol: "https",
-        protocols: ['http', 'https'],
-        
+        protocols: ["http", "https"],
       }),
       Color,
       Highlight.configure({
