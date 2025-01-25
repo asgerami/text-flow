@@ -33,6 +33,21 @@ export const get = query({
       throw new ConvexError("Unauthorized");
     }
 
+    const organizationId = (user.oraganization ?? undefined) as
+      | string
+      | undefined;
+
+      // Searching for oganizations
+    if (search && organizationId) {
+      return await ctx.db
+        .query("documents")
+        .withSearchIndex("search_title", (q) =>
+          q.search("title", search).eq("organizationId", organizationId)
+        )
+        .paginate(paginationOpts);
+    }
+
+    // Searching for personal documents
     if (search) {
       return await ctx.db
         .query("documents")
@@ -42,6 +57,14 @@ export const get = query({
         .paginate(paginationOpts);
     }
 
+    // All documents for an organization
+    if (organizationId) {
+      return await ctx.db
+        .query("documents")
+        .withIndex("by_organizationId", (q) => q.eq("organizationId", organizationId))
+        .paginate(paginationOpts);
+    }
+// All personal documents
     return await ctx.db
       .query("documents")
       .withIndex("by_ownwerId", (q) => q.eq("ownerId", user.subject))
