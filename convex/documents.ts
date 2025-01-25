@@ -33,11 +33,11 @@ export const get = query({
       throw new ConvexError("Unauthorized");
     }
 
-    const organizationId = (user.oraganization ?? undefined) as
+    const organizationId = (user.organization_id ?? undefined) as
       | string
       | undefined;
 
-      // Searching for oganizations
+    // Searching for oganizations
     if (search && organizationId) {
       return await ctx.db
         .query("documents")
@@ -61,10 +61,12 @@ export const get = query({
     if (organizationId) {
       return await ctx.db
         .query("documents")
-        .withIndex("by_organizationId", (q) => q.eq("organizationId", organizationId))
+        .withIndex("by_organizationId", (q) =>
+          q.eq("organizationId", organizationId)
+        )
         .paginate(paginationOpts);
     }
-// All personal documents
+    // All personal documents
     return await ctx.db
       .query("documents")
       .withIndex("by_ownwerId", (q) => q.eq("ownerId", user.subject))
