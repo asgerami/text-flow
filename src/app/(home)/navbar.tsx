@@ -21,8 +21,8 @@ export const Navbar = () => {
         afterSelectOrganizationUrl="/"
         afterSelectPersonalUrl="/"
         />
-      </div>
       <UserButton />
+      </div>
     </nav>
   );
 };
