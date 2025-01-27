@@ -60,7 +60,9 @@ export const Editor = () => {
     },
     extensions: [
       liveblocks,
-      StarterKit,
+      StarterKit.configure({
+        history: false,
+      }),
       lineHeightExtension.configure({
         types: ["heading", "paragraph"],
         defaultLineHeight: "normal",
